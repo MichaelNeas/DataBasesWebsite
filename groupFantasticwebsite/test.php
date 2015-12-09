@@ -7,7 +7,7 @@ $password="neas_SQL_server";
 $dbname="chinook";
 
 $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
-	or die ('Could not connect to the database server' . mysqli_connect_error());
+    or die ('Could not connect to the database server' . mysqli_connect_error());
     echo "Succesful!";
 ?>
 	<div style="padding-left:20px; text-align: center; background:cyan;">

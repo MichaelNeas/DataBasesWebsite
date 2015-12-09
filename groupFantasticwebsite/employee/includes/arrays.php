@@ -28,7 +28,7 @@
 						),
 
 					array(
-						slug  => "../tportal.html",
+						slug  => "../login.php",
 						title => "Logout"
 						),
 		);

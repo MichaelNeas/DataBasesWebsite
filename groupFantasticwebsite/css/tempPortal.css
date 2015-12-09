@@ -53,9 +53,10 @@ h1 span {
 }
 
 .button {
+
   border: 0 none;
   border-radius: 36px;
-  padding: 12px 45px;
+  padding: 18px 45px;
   margin: 0 10px;
   cursor: pointer;
   display: inline-block;

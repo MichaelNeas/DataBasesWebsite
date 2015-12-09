@@ -22,3 +22,6 @@
 		</div> <!-- nav -->
 	
 	<div id="Bcolor" class="content">		
+	<?php
+	include('../globalIncludes/config.ini.php');
+?>
