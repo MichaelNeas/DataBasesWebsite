@@ -1,0 +1,144 @@
+*{
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+/*Standard link buttons*/
+
+a:hover{
+  color:#ecf0f1;
+}
+
+/*--Login.html css code--*/
+.half{
+  float: left;
+  width: 50%;
+}
+
+.half input{
+  min-width: 250;
+}
+
+label, input{
+  margin: 1% 2%;
+  padding: 1%;
+}
+
+#submit{
+  text-align: left;
+  padding: 2% 0;
+  clear: both;
+}
+
+form{
+	padding: 2%;
+	border: 1px black solid;
+}
+
+.log-link a{
+  text-decoration: none;
+  padding: 1%;
+  background-color: black;
+  border-radius: 8px;
+  color: white;
+}
+/*--Login.html css code--*/
+
+/*--register.html css code--*/
+#register{
+ text-align: center;
+ margin: auto 0;
+}
+
+#Email{
+	padding: 2% 0;
+}
+
+#User{
+  padding: 0% 5%;
+  border: 1px black solid;
+}
+
+#User input{
+	margin: 0;
+  padding: 2%;
+	width: 80%;
+}
+
+#Email input{
+    min-width: 250px;
+	  margin: 0;
+  	padding: 2%;
+}
+
+#User > section {
+  border: none;
+  padding: 5% 0%;
+  float: left;
+}
+
+/*--register.html css code--*/
+
+/*--edit.html css code--*/
+
+section{
+  margin: 1%;
+  padding: 2% 2%;
+  border: 3px black solid;
+  border-radius: 15px;
+}
+
+#edit input{
+  min-width: 250px;
+}
+
+/*--edit.html css code--*/
+
+/*--All Dashboard css code--*/
+#sidebar{
+  text-align: right;
+}
+
+
+html{
+  background-color: #636363;
+}
+
+
+header{
+  text-align: center;
+  background-color:#636363;
+  color:white;
+  padding:10px;
+}
+
+.container-fluid{
+  background-color:#636363;
+}
+#Bcolor{
+  margin-right: 20px;
+  margin-left: 20px;
+  padding: 10px;
+  background-color: rgb(236, 240, 241);
+  border-radius: 10px;
+}
+footer{
+  background-color:#636363;
+  color:white;
+}
+
+/*Get rid of scroll bars*/
+
+h1{
+  padding: 5px;
+}
+h2{
+  padding: 2px;
+}
+h3{
+  padding:1px;
+}
+
+div{
+  padding:2px;
+}
