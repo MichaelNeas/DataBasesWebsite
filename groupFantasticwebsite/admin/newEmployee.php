@@ -47,8 +47,13 @@
       <input type="text" name="Reputation" class="form-control" id="Reputation" autocomplete: "off">
       <label for="">Title</label>
       <input type="text" name="Title" class="form-control" id="Title" autocomplete: "off">
-
-      <button type="submit" class="buttonLayoutSubmit" id="submit"><small>Submit</small></button>
+      <br>
+      <div style="text-align:center;">
+      <input type="radio" name="isAdmin" value="yesAdmin"> Admin
+      <input type="radio" name="isAdmin" value="noAdmin"> Employee
+      <br><br>
+      <button type="submit" class="buttonLayoutSubmit" name="submit"><small>Submit</small></button>
+      </div>
 
     </div>
   </form>

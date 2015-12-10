@@ -2,54 +2,96 @@
 	include('includes/header.php');
 	?>
 <h2>Search Media</h2>
-   			<div class="search">
-   			<form style="border:none;">
-      			<input type="text" class="searchTracks" placeholder="Tracks">
-      			<input type="text" class="searchAlbums" placeholder="Albums">
-      			<input type="text" class="searchArtists" placeholder="Artists">
-      			<input type="text" class="searchGenres" placeholder="Genres">
-      			<input type="submit" class="searchButton" value="Search"></input>
-      			</form>
-      		</div>
+   		<div class="search">
+   			<form style="border:none;" method="post">
+      			<input type="text" class="searchTracks" name="searchTracks" placeholder="Tracks">
+      			<strong>OR</strong>
+      			<input type="text" class="searchAlbums" name="searchAlbums" placeholder="Albums">
+      			<strong>OR</strong>
+      			<input type="text" class="searchArtists" name="searchArtists" placeholder="Artists">
+      			<strong>OR</strong>
+      			<input type="text" class="searchGenres" name="searchGenres" placeholder="Genres">
+      			<input type="submit" class="searchButton" name="searchSongs" value="Search"></input>
+       		</form>
+      	</div>
 
-      		<div class = "searchResults">
-				<h1>Search Results </h1>
+<?php   
+/* Connection Debugging	
+    if ($con->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } 
+    else{
+        echo "connected";
+    }*/
+    //echo $_POST['personID'];
+    if(isset($_POST["searchSongs"])){
+        $trackName = $_POST['searchTracks'];
+        $trackName = "%" .$trackName. "%";
+        //echo $trackName;
+            $query = "SELECT TrackID,Name,Composer,MilliSeconds,UnitPrice FROM track where Name LIKE ? ORDER BY Name ASC";
+        if ($stmt = $con->prepare($query)) {
+            $stmt->bind_param("s", $trackName); 
+            $stmt->execute();
+            $stmt->store_result();
+            $stmt->bind_result($TrackID, $Name, $Composer, $MilliSeconds, $UnitPrice);
+            ?>
+      	<div class = "searchResults">
+			<h1>Search Results </h1>
 		<table class="rwd-table">
 		  <tr>
-		    <th>Track</th>
-		    <th>Album</th>
-		    <th>Artist</th>
-		    <th>Genre</th>
+		    <!--<th>TrackID</th>-->
+		    <th>Name</th>
+		    <th>Composer</th>
+		    <th>Time</th>
 		    <th>Price</th>
+		    </tr>
 
-		  </tr>
+		    <?php
+            while($stmt->fetch()){
+
+            $input = $MilliSeconds;
+
+			$uSec = $input % 1000;
+			$input = floor($input / 1000);
+
+			$seconds = $input % 60;
+			$input = floor($input / 60);
+
+			$minutes = $input % 60;
+			$input = floor($input / 60); 
+?>		  
 		  <tr>
-		    <td data-th="Movie Title">Star Wars</td>
-		    <td data-th="Genre">Adventure, Sci-fi</td>
-		    <td data-th="Year">1977</td>
-		    <td data-th="Year">1977</td>
-		    <td data-th="Gross">$460,935,665</td>
-		    <td data-th="removeSong"><button id="removeSong" style="color:black;">Delete</button></td>
+		    <!--<td data-th="trackID"><?php //echo $TrackID; ?></td>-->
+		    <td data-th="tackName"><?php echo $Name; ?></td>
+		    <td data-th="trackComposer"><?php echo $Composer; ?></td>
+		    <td data-th="trackTime"><?php echo ''.$minutes.':'.$seconds.''; ?></td>
+		    <td data-th="trackCost"><?php echo '$ '.$UnitPrice.''; ?></td>
+		    <td data-th="purchaseSong"><button id="purchaseSong" style="color:black;">Buy</button></td>
 		  </tr>
-		  <tr>
-		    <td data-th="Movie Title">Howard The Duck</td>
-		    <td data-th="Genre">"Comedy"</td>
-		    <td data-th="Year">1977</td>
-		    <td data-th="Year">1986</td>
-		    <td data-th="Gross">$16,295,774</td>
-		    <td data-th="removeSong"><button id="removeSong" style="color:black;">Delete</button></td>
-		  </tr>
-		  <tr>
-		    <td data-th="Movie Title">American Graffiti</td>
-		    <td data-th="Genre">Comedy, Drama</td>
-		    <td data-th="Year">1977</td>
-		    <td data-th="Year">1973</td>
-		    <td data-th="Gross">$115,000,000</td>
-		    <td data-th="removeSong"><button id="removeSong" style="color:black;">Delete</button></td>
-		  </tr>
+	
+
+	
+	<?php
+
+			}
+        }
+        // Free result set
+		mysqli_free_result($result);
+
+		mysqli_close($con);
+        /* Connection Debugging	
+        *else{
+            echo "Prepare failed: (" . $con->errno . ") " . $con->error;
+        }
+        */
+    }
+    else{
+    	echo "Search Something!";
+    }
+?>	
 		</table>
 
-	</div>
+	
 <h2>Add Media To Database</h2>
 
 	<script type="text/javascript">

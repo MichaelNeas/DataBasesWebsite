@@ -4,6 +4,22 @@
 }
 
 /*Standard link buttons*/
+#alertLine {
+  display:none;
+  position:relative;
+  margin-left: 100px;
+  color:rgb(227,107,107);
+  top:-8px;
+}
+
+#alertLine2 {
+  display:none;
+  position:relative;
+  margin-left: 100px;
+  color:rgb(227,107,107);
+  top:-8px;
+}
+
 #logo {
   width:130px;
   float:left;
@@ -328,7 +344,6 @@ footer{
 .table-add:hover {
   color: #0b0;
 }
-
 
 /*Get rid of scroll bars*/
 

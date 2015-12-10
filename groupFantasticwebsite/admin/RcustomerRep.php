@@ -95,7 +95,7 @@
 			</div>
 		</div>
 		<br> <br>
-
+</div>
 	
 <?php
 	include('../globalIncludes/footer.php');
