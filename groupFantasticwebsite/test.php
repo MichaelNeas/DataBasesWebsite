@@ -29,13 +29,22 @@ $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
             margin:10px;">Back To Portal Master</div></a>
             <br>
 
+
+<form method="post" action="">
+  First name: <input type="text" name="fname"><br>
+  Last name: <input type="text" name="lname"><br>
+  <input type="submit" name="submit" value="Search For Person">
+</form>
+
+
 <?php
-$query = "SELECT `FirstName`,`LastName` FROM `person` ORDER BY `person`.`LastName` ASC";
+$query = "SELECT FirstName,LastName FROM person ";
 //$query = "SELECT `AlbumId` FROM `chinook`.`Album"
 
 if ($stmt = $con->prepare($query)) {
     $stmt->execute();
     $stmt->bind_result($FirstName, $LastName);
+
 ?>
     <table style="margin: 0 auto;">
 
@@ -55,6 +64,41 @@ if ($stmt = $con->prepare($query)) {
 }
 //$con->close();
 ?>
+<?php   
+    if ($con->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } 
+    else{
+        echo "connected";
+    }
+    echo "<br>";
+    if(isset($_POST["submit"])){
+        echo "<br>";
+        $firstName = $_POST['fname'];
+        $lastName = $_POST['lname'];
+            $query = "SELECT FirstName,LastName FROM person WHERE FirstName = ? AND LastName = ? ";
+        if ($stmt = $con->prepare($query)) {
+            $stmt->bind_param( "ss", $firstName, $lastName); 
+            $stmt->execute();
+            $stmt->store_result();
+            printf("Number of rows: %d.\n", $stmt->num_rows);
+            $stmt->bind_result($fname, $lname);
+            $stmt->fetch();
+            printf("%s %s\n", $fname, $lname);
+            if($stmt->num_rows > 0) {
+                echo "Found Them!"; // The record(s) do exist
+            }
+            else{
+                echo "didn't find them";
+            }
+            $stmt -> close();
+        }
+        else{
+            echo "Prepare failed: (" . $con->errno . ") " . $con->error;
+        }
+    }
+?>
+
 </table>
 </div>
 

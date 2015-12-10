@@ -9,7 +9,7 @@
 
 					array(
 						slug  => "searchMedia.php",
-						title => "Search Media"
+						title => "Search, Remove, and Add Media"
 						),
 
 					array(
@@ -19,12 +19,12 @@
 
 					array(
 						slug  => "customerDemographics.php",
-						title => "Customer Demographics"
+						title => "Customer & Employee Demographics"
 						),
 
 					array(
 						slug  => "userModifyProfile.php",
-						title => "Modify Profile"
+						title => "Modify Profiles"
 						),
 
 					array(

@@ -2,55 +2,62 @@
   include('includes/header.php');
   ?>
 
-
-	   <h2>Inventory Reporting</h2>
-
-
-
+	   <h2>Inventory Report</h2>
 	<div>
+<h2>Search Media</h2>
+        <div class="search">
+        <form style="border:none;">
+            <input type="text" class="searchTracks" placeholder="Tracks">
+            <input type="text" class="searchAlbums" placeholder="Albums">
+            <input type="text" class="searchArtists" placeholder="Artists">
+            <input type="text" class="searchGenres" placeholder="Genres">
+            <input type="submit" class="searchButton" value="Search"></input>
+            </form>
+          </div>
 
-    <div>
-      <h3>Search for Songs</h3>
-    </div>
+          <div class = "searchResults">
+        <h1>Search Results </h1>
+    <table class="rwd-table">
+      <tr>
+        <th>Track</th>
+        <th>Album</th>
+        <th>Artist</th>
+        <th>Genre</th>
+        <th>Price</th>
+        <th>Date Added</th>
+        <th>Uploaded By</th>
 
-    <div>
+      </tr>
+      <tr>
+        <td data-th="trackInv">Star Wars</td>
+        <td data-th="albumInv">Sci-fi</td>
+        <td data-th="artistInv">Kid Rock</td>
+        <td data-th="genreInv">Rock</td>
+        <td data-th="priceInv">$460,935,665</td>
+        <td data-th="dateInv">1974</td>
+        <td data-th="uploadedBy">Mike</td>
+      </tr>
+      <tr>
+        <td data-th="trackInv">Star Wars</td>
+        <td data-th="albumInv">Sci-fi</td>
+        <td data-th="artistInv">Kid Rock</td>
+        <td data-th="genreInv">Rock</td>
+        <td data-th="priceInv">$460,935,665</td>
+        <td data-th="dateInv">1974</td>
+        <td data-th="uploadedBy">Mike</td>
+      </tr>
+      <tr>
+        <td data-th="trackInv">Star Wars</td>
+        <td data-th="albumInv">Sci-fi</td>
+        <td data-th="artistInv">Kid Rock</td>
+        <td data-th="genreInv">Rock</td>
+        <td data-th="priceInv">$460,935,665</td>
+        <td data-th="dateInv">1974</td>
+        <td data-th="uploadedBy">Mike</td>
+      </tr>
+    </table>
 
-      <div>
-          <label for="">Song Name: </label>
-          <input type="text" id="iSearchName" />
-      </div>
-
-      <div >
-        <label for="">Song Artist: </label>
-        <input type="text" id="iSearchArtist" />
-      </div>
-
-      <div >
-        <label for="">Album Name: </label>
-        <input type="text" id="iSearchAlbum" />
-      </div>
-
-      <div>
-        <label for="">Genre: </label>
-        <input type="text" id="iSearchGenre" />
-      </div>
-    </div>
-
-    <br>
-
-    <div id="songItem">
-      <a href="#" class="list-group-item">
-        <div >
-          <ol>
-            <li id="siName">Song Name: </li>
-            <li id="siArtist">Artist Name: </li>
-            <li id="siAlbum">Album Name: </li>
-            <li id="siGenre">Genre: </li>
-            <li id="siType">Media Type: </li>
-          </ol>
-        </div>
-      </a>
-    </div>
+  </div>
 
 <?php
   include('../globalIncludes/footer.php');

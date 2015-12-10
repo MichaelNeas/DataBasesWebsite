@@ -11,7 +11,9 @@
 </head>
 
 <body>
-<header "col-xs-12">
+<header>
+	<img src="http://i67.tinypic.com/x58nr7.png" id="logo">
+    <img src="http://i63.tinypic.com/2lxxith.png" id="chinook">
 	<h1>Employee Dashboard</h1>
 </header> <!--Banner -->
 

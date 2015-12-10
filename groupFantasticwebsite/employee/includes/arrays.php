@@ -9,12 +9,12 @@
 
 					array(
 						slug  => "searchMedia.php",
-						title => "Search Media"
+						title => "Search, Remove, and Add Media"
 						),
 
 					array(
 						slug  => "allPlaylists.php",
-						title => "All Playlists"
+						title => "Modify All Playlists"
 						),
 
 					array(
@@ -24,7 +24,7 @@
 
 					array(
 						slug  => "userModifyProfile.php",
-						title => "Modify Profile"
+						title => "Modify Profiles"
 						),
 
 					array(

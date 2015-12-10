@@ -3,7 +3,7 @@
 
 <footer>
 	<hr>
-	Group F: Alex Dow, Mike Neas, Joey Hanlon, Dillon Shea
+	Group F: Mike Neas, Alex Dow, Joey Hanlon, Dillon Shea
 </footer>
 
 </body>

@@ -2,7 +2,7 @@
 <?php 
   include('includes/header.php');
   ?>
-	   <h2>Employee Productivity Reporting</h2>
+	   <h2>Employee Productivity</h2>
 
 	<div>
 		<div>

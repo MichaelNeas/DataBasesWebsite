@@ -1,7 +1,7 @@
 <?php 
 	include('includes/header.php');
 	?>
-		   <h2>Customer Reporting</h2>
+		   <h2>Customer Report</h2>
     <div >
     	<div >
 			<label for="">Report Date: <?php echo date('l \- m/d/Y');?></label>
@@ -21,14 +21,6 @@
 				<label for="">Search by customer:</label>
 				<input type="text" id="cFName" placeholder="First Name" />
 				<input type="text" id="cLName" placeholder="Last Name" />
-			</div>
-
-			<div>
-				<label for="">Search by media:</label>
-				<input type="text" id="cSName" placeholder="Song Name" />
-				<input type="text" id="cArName" placeholder="Artist Name" />
-				<input type="text" id="cAlName" placeholder="Album Name" />
-				<input type="text" id="cGName" placeholder="Genre" />
 			</div>
 
 			<div>
