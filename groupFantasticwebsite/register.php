@@ -23,6 +23,8 @@ if (!empty($_POST)) {
         // Create some data that will be the JSON response 
         $response["success"] = 0;
         $response["message"] = "Please Enter Both a Username and Password.";
+
+
         
         //die will kill the page and not execute any code below, it will also
         //display the parameter... in this case the JSON data our Android
@@ -53,6 +55,8 @@ if (!empty($_POST)) {
         //or just use this use this one to product JSON data:
         $response["success"] = 0;
         $response["message"] = "Database Error1. Please Try Again!";
+        header("Location:register.php?message=invalid");
+        exit();
         die(json_encode($response));
     }
     
@@ -67,6 +71,8 @@ if (!empty($_POST)) {
         //You could comment out the above die and use this one:
         $response["success"] = 0;
         $response["message"] = "I'm sorry, this username is already in use";
+        header("Location:register.php?message=unavail");
+        exit();
         die(json_encode($response));
     }
 
@@ -101,6 +107,8 @@ if (!empty($_POST)) {
         //or just use this use this one:
         $response["success"] = 0;
         $response["message"] = "Database Error2.5 Please Try Again!";
+        header("Location:register.php?message=invalid");
+        exit();
         die(json_encode($response));
     }
     
@@ -110,9 +118,9 @@ if (!empty($_POST)) {
     //json data that will be read by the Android application, which will login
     //the user (or redirect to a different activity, I'm not sure yet..)
 
-    $response["success"] = 1;
-    $response["message"] = "User added to person table!";
-    echo json_encode($response);
+    //$response["success"] = 1;
+    //$response["message"] = "User added to person table!";
+    //echo json_encode($response);
     
     //for a php webservice you could do a simple redirect and die.
     //header("Location: login.php"); 
@@ -145,6 +153,8 @@ if (!empty($_POST)) {
         //or just use this use this one:
         $response["success"] = 0;
         $response["message"] = "Database Error2. Please Try Again!";
+        header("Location:register.php?message=invalid");
+        exit();
         die(json_encode($response));
     }
     
@@ -153,9 +163,21 @@ if (!empty($_POST)) {
     //redirect to the login page.  Instead we are going to echo out some
     //json data that will be read by the Android application, which will login
     //the user (or redirect to a different activity, I'm not sure yet..)
-    $response["success"] = 1;
-    $response["message"] = "User added to customer table!";
-    echo json_encode($response);
+    //$response["success"] = 1;
+    //$response["message"] = "User added to customer table!";
+    //echo json_encode($response);
+
+    //header("Location:login.php");
+
+    header("Location:login.php?message=success");
+    exit();
+
+    //echo '
+        //<script type="text/javascript">
+        //window.location.href="login.php";
+        //document.getElementById("alertLine").style.display = "block";
+        //</script> ';
+    //die("Redirecting to login...");
     
     //for a php webservice you could do a simple redirect and die.
     //header("Location: login.php"); 
@@ -166,6 +188,8 @@ if (!empty($_POST)) {
 ?>
 
 <link rel="stylesheet" href="css/style_register.css">
+
+<body>
 
   <div id="header">
     <img src="http://i67.tinypic.com/x58nr7.png" id="logo">
@@ -178,40 +202,54 @@ if (!empty($_POST)) {
   <h3 id=title> Customer Registration </h3>
   <div class="line-separator"></div>
 
+  <h5 id="alertLine">Invalid credentials</h5>
+  <h5 id="alertLine2">Username is unavailable!</h5>
+
   <form action="register.php" method="post">
     <div class="form-group">
       <label for="">First name</label>
-      <input type="text" name="FirstName" class="form-control" id="FirstName" autocomplete: "off">
+      <input type="text" name="FirstName" required class="form-control" id="FirstName" autocomplete: "off">
       <label for="">Last name</label>
-      <input type="text" name="LastName" class="form-control" id="LastName" autocomplete: "off";>
+      <input type="text" name="LastName" required class="form-control" id="LastName" autocomplete: "off";>
       <label for="">Email</label>
-      <input type="text" name="Email" class="form-control" id="Email" autocomplete: "off">
+      <input type="text" name="Email" required class="form-control" id="Email" autocomplete: "off">
       <label for="">Company</label>
       <input type="text" name="Company" class="form-control" id="Company" autocomplete: "off";>
       <label for="">Username</label>
-      <input type="text" name="Username" class="form-control" id="Username" autocomplete: "off">
+      <input type="text" name="Username" required class="form-control" id="Username" autocomplete: "off">
       <label for="">Password</label>
-      <input type="password" name="Password" class="form-control" id="Password" autocomplete: "off">
+      <input type="password" name="Password" required class="form-control" id="Password" autocomplete: "off">
       <label for="">Address</label>
-      <input type="text" name="Address" class="form-control" id="Address" autocomplete: "off">
+      <input type="text" name="Address" required class="form-control" id="Address" autocomplete: "off">
       <label for="">City</label>
-      <input type="text" name="City" class="form-control" id="City" autocomplete: "off">
+      <input type="text" name="City" required class="form-control" id="City" autocomplete: "off">
       <label for="">State</label>
-      <input type="text" name="State" class="form-control" id="State" autocomplete: "off">
+      <input type="text" name="State" required class="form-control" id="State" autocomplete: "off">
       <label for="">Country</label>
-      <input type="text" name="Country" class="form-control" id="Country" autocomplete: "off">
+      <input type="text" name="Country" required class="form-control" id="Country" autocomplete: "off">
       <label for="">Postal code</label>
-      <input type="text" name="PostalCode" class="form-control" id="PostalCode" autocomplete: "off">
+      <input type="text" name="PostalCode" required class="form-control" id="PostalCode" autocomplete: "off">
       <label for="">Phone</label>
-      <input type="text" name="Phone" class="form-control" id="Phone" autocomplete: "off">
+      <input type="text" name="Phone" required class="form-control" id="Phone" autocomplete: "off">
       <label for="">Fax</label>
       <input type="text" name="Fax" class="form-control" id="Fax" autocomplete: "off">
       <button type="submit" class="buttonLayoutSubmit" id="submit"><small>Submit</small></button>
     </div>
   </form>
 
+  </body>
+
+  <script src="js/index.js"></script>
+
 <?php
 
+}
+
+if($_GET['message'] == "invalid") {
+    echo "<script> alertLine(); </script>";
+}
+if($_GET['message'] == "unavail") {
+    echo "<script> alertLine2(); </script>";
 }
 
 ?>

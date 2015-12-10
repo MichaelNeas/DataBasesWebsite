@@ -28,6 +28,16 @@ body {
   margin-left:40px;
 }
 
+#centerbox {
+  display:block;
+  position:relative;
+  width:400px;
+  height:300px;
+  margin-left:100px;
+  top:30px;
+  background:rgba(0,0,0,0.5);
+}
+
 .line-separator {
   height: 1px;
   width: 60%;
@@ -35,22 +45,6 @@ body {
   border-bottom: 1px solid #313030;
   margin-left: 100px;
   margin-top:25px;
-}
-
-#alertLine {
-  display:none;
-  position:relative;
-  margin-left: 100px;
-  color:rgb(227,107,107);
-  top:-8px;
-}
-
-#alertLine2 {
-  display:none;
-  position:relative;
-  margin-left: 100px;
-  color:rgb(227,107,107);
-  top:-8px;
 }
 
 #logo {
@@ -76,30 +70,12 @@ background:#6abed8;
 
 button:focus {outline:none;}
 
-.buttonLayoutLogin {
-  display: block;
-  margin: 0 auto;
-  padding: 4px 28px;
-  position: relative;
-  top:10%;
-  font-size: 18px;
-  line-height: 20px;
-  color: #f1f1f1;
-  text-align: center;
-  cursor: pointer;
-  background-color: #3F3F3F;
-  border: 1px solid #FFFFFF;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-}
-
 .buttonLayoutSubmit {
-  margin-left: 125px;
+  margin-left: 120px;
   padding: 4px 28px;
   width:160px;
   position: relative;
-  top:30px;
+  top:220px;
   font-size: 18px;
   line-height: 20px;
   color: #f1f1f1;
@@ -120,8 +96,8 @@ form {
 .form-group {
   display:block;
   position:absolute;
-  top:240px;
-  left:100px;
+  margin-left:50px;
+  top:50px;
 }
 
 .form-control {
@@ -136,6 +112,16 @@ form {
   color:#FFFFFF;
   font-size:18px;
   text-indent:15px;
+}
+
+#alertLine {
+
+  display:none;
+  width:400px;
+  text-align:center;
+  margin-top:235px;
+  color:rgb(227,107,107);
+
 }
 
 label {

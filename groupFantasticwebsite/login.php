@@ -7,10 +7,10 @@ if (!empty($_POST)) {
     //gets user's info based off of a username.
     $query = " 
             SELECT 
-                PersonID, 
+                CPersonID, 
                 Username, 
                 Password
-            FROM Customer 
+            FROM customer 
             WHERE 
                 Username = :Username
         ";
@@ -53,10 +53,14 @@ if (!empty($_POST)) {
     if ($login_ok) {
         $response["success"] = 1;
         $response["message"] = "Login successful!";
+        header("Location:customer/Cdashboard.php");
+        exit();
         die(json_encode($response));
     } else {
         $response["success"] = 0;
         $response["message"] = "Invalid Credentials!";
+        header("Location:login.php?message=invalid");
+        exit();
         die(json_encode($response));
     }
 } else {
@@ -86,19 +90,22 @@ if (!empty($_POST)) {
 
   <button type="button" class="buttonLayoutLogin" onclick="revealLogin()"
   id=login> <small>Login</small></button>
+
+  <h5 id="alertLine">Registration successful! Please log in!</h5>
   
   <form action = "login.php" method = "post">
   <div class="form-group">
-    <input type="text" name="Username" class="form-control" id="username" placeholder="Username" autocomplete:"off">
+    <input type="text" name="Username" class="form-control" placeholder="Username" id="username" autocomplete:"off">
   </div>
   <div class="form-group">
-    <input type="password" name="Password" class="form-control" id="pwd"
+    <input type="password" name="Password" id="pwd" class="form-control"
     placeholder="Password" autocomplete:"off";>
   </div>
     <button type="submit" class="buttonLayoutSubmit"
     id="submit"><small>Submit</small></button>
     
     <div class="register-line" id="reg-line">
+    <h5 id="alertLine2">Invalid credentials</h5>
     <small id="donthaveline">Dont have an account?</small>
     <a href="register.php">Register</a>
     </div>
@@ -107,8 +114,8 @@ if (!empty($_POST)) {
   <div class="line-separator"></div>
   
   <div id="link-group" class="link-group">
-  <a href="login_employee.php">Employee Login</a>
-  <a href="login_admin.php" >Admin Login</a>
+  <a href="login_admin_employee.php">Employee Login</a>
+  <a href="login_admin_employee.php" >Admin Login</a>
   <a href="tportal.html" >About</a>
   </div>
   
@@ -117,13 +124,16 @@ if (!empty($_POST)) {
     
         <script src="js/index.js"></script>
 
-    
-    
-    
-  </body>
-
 
     <?php
+}
+
+if($_GET['message'] == "success") {
+    echo "<script> alertLine(); </script>";
+}
+if($_GET['message'] == "invalid") {
+    echo "<script> alertLine2();
+    revealLogin(); </script>";
 }
 
 ?> 

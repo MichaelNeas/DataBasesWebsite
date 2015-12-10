@@ -30,6 +30,22 @@ button:focus {outline:none;}
   border-radius: 4px;
 }
 
+#alertLine {
+  display:none;
+  position:relative;
+  color:#6abed8;
+  text-align:center;
+  margin:20px auto;
+}
+
+#alertLine2 {
+  display:none;
+  text-align:center;
+  position:relative;
+  color:rgb(227,107,107);
+  margin:10px auto;
+}
+
 .buttonLayoutSubmit {
   margin: 0 auto;
   padding: 4px 28px;
@@ -54,8 +70,7 @@ button:focus {outline:none;}
   color:#909088;
   text-align:center;
   position:relative;
-  top: 40px;
-  margin:0 auto;
+  margin:50px auto;
 }
 
 .buttonLayoutRegister {
@@ -101,6 +116,15 @@ form {
   text-indent:15px;
 }
 
+.success {
+    margin-top: 5px;
+    padding: 5px;
+    background-color: #F00;
+    border: 2px solid #666;
+    width: auto;
+    color: #000000;
+}
+
 input:focus {
   outline:none;
   background:#6abed8;
@@ -119,7 +143,7 @@ img {
 
 .line-separator {
   position: relative;
-  top: 140px;
+  margin-top:200px;
   height: 1px;
   width: 75%;
   background: #FFFFFF;
@@ -131,7 +155,7 @@ img {
 #link-group {
   width: 700px;
   position:relative;
-  top: 150px;
+  top: 10px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
