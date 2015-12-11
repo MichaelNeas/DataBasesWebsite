@@ -1,6 +1,5 @@
 <?php 
 	include('includes/header.php');
-	include('');
 	?>
 
 	Homescreen of the Admin dashboard!

@@ -10,18 +10,83 @@
 		  <tr>
 		    <th>Order ID</th>
 		    <th>Topic</th>
-		    <th>Order Date</th>
 		    <th>Total Price</th>
 		  </tr>
-		  <tr>
-		    <td data-th="orderID">#12312312</td>
-		    <td data-th="orderTopic">Star Wars Theme Songs</td>
-		    <td data-th="orderDate">Today</td>
-		    <td data-th="orderprice">$0.99</td>
-		  </tr>
-		</table>
 
-	</div>
+<?php
+$query = "CREATE TEMPORARY TABLE ids (     idname VARCHAR(320), 	itemID INT(11),     Price DECIMAL(10,2) )";
+if ($stmt = $con->prepare($query)) {
+	$stmt->execute();
+	$stmt->bind_result($field1, $field2);
+	while ($stmt->fetch()) {
+    	//printf("%s, %s\n", $field1, $field2);
+	}
+	$stmt->close();
+}else{
+echo "Doesnt work";
+}
+
+$personID = $_SESSION['PersonID'];
+$query = "INSERT INTO ids ( idname, itemID, Price ) select CONCAT(artist.name,' - ',track.name), shoppingcart.ItemID, track.UnitPrice FROM shoppingcart join chinook.customer on SCustomerID = customer.CustomerId join chinook.person on person.PersonID = customer.CPersonID AND person.PersonID = ? join chinook.trackitem on trackitem.Titemid = shoppingcart.ItemID join chinook.track on track.trackid = trackitem.realtrackid join chinook.album on album.AlbumId = track.AlbumId join chinook.artist on artist.ArtistId = album.ArtistId";
+
+if ($stmt = $con->prepare($query)) {
+	$stmt->bind_param("i", $personID); 
+	$stmt->execute();
+	$stmt->bind_result($name, $ItemID, $UnitPrice);
+	unset($params);
+	$stmt->close();
+}else{
+echo "Doesnt work";
+}
+
+$personID = $_SESSION['PersonID'];
+$query = "INSERT INTO ids ( idname, itemID, Price ) select CONCAT(artist.name,' - ',album.Title) AS albumname, shoppingcart.ItemID, (count(track.name) * track.UnitPrice) AS Price FROM (shoppingcart,album) join chinook.customer on SCustomerID = customer.CustomerId join chinook.person on person.PersonID = customer.CPersonID and person.personid = ? join chinook.albumitem on albumitem.Aitemid = shoppingcart.ItemID and albumitem.realalbumid = album.AlbumId join chinook.track on album.AlbumId = track.AlbumId join chinook.artist on artist.ArtistId = album.ArtistId GROUP BY albumname";
+
+
+if ($stmt = $con->prepare($query)) {
+	$stmt->bind_param("i", $personID); 
+	$stmt->execute();
+	$stmt->bind_result($albumname, $ItemID, $Price);
+	$stmt->fetch();
+	unset($params);
+	$stmt->close();
+}else{
+    echo "Prepare failed: (" . $con->errno . ") " . $con->error;
+ }
+
+
+$query = "select idname, itemID, Price from ids";
+
+if ($stmt = $con->prepare($query)) {
+	$stmt->execute();
+	$stmt->bind_result($idname, $itemID, $Price );
+	while ($stmt->fetch()) {
+    	?>
+    		<tr>
+		    <td data-th="orderID"><?php echo '#'.$itemID.''; ?></td>
+		    <td data-th="orderTopic"><?php echo $idname; ?></td>
+		    <td data-th="orderprice"><?php echo '$ '.$Price.''; ?></td>
+		  </tr>
+    	<?php
+	}
+	$stmt->close();
+}
+else{
+echo "Doesnt work";
+}
+
+$query = "drop table ids";
+if ($stmt = $con->prepare($query)) {
+	$stmt->execute();
+	$stmt->bind_result($field1, $field2);
+	while ($stmt->fetch()) {
+    	//printf("%s, %s\n", $field1, $field2);
+	}
+	$stmt->close();
+}
+?>
+	</table>
+</div>
 
 	<div class = "completedOrders">
 				<h1>Your Completed Orders </h1>
@@ -53,8 +118,7 @@
             $stmt->execute();
             $stmt->store_result();
             $stmt->bind_result($InvoiceID, $InvoiceDate, $BillingAddress, $BillingCity, $BillingState, $BillingCountry, $BillingPostalCode, $Total, $PaymentOption);
-            ?>
-		    <?php
+            if($stmt->num_rows != 0){
             while($stmt->fetch()){
 			?>		  
 		  <tr>
@@ -67,11 +131,14 @@
 	<?php
 
 			}
-        
+        }
+        else{
+        	echo "You have no order history";
+        }
         // Free result set
-	
-
-		$con->close();
+		//mysqli_free_result($result);
+    $stmt->close();
+    unset($params);
         /* Connection Debugging	
         *else{
             echo "Prepare failed: (" . $con->errno . ") " . $con->error;
@@ -94,7 +161,7 @@
 
 <!--Quick Search-->
 	<div class = "quickSearch">
-	<h3> Search for songs </h3>
+	<h3> Quick search for songs </h3>
    			<div class="search">
    			<form style="border:none;" method="post">
       			<input type="text" class="searchTerm" name="searchTerm" placeholder="Search our database for tracks?">
@@ -121,15 +188,15 @@
             $stmt->store_result();
             $stmt->bind_result($TrackID, $Name, $Composer, $MilliSeconds, $UnitPrice);
             ?>
-      	<div class = "searchResults">
-			<h1>Search Results </h1>
-		<table class="rwd-table">
-		  <tr>
+      		<div class = "searchResults">
+				<h1>Search Results </h1>
+			<table class="rwd-table">
+		  	<tr>
 		    <!--<th>TrackID</th>-->
-		    <th>Name</th>
-		    <th>Composer</th>
-		    <th>Time</th>
-		    <th>Price</th>
+		    	<th>Name</th>
+		    	<th>Composer</th>
+		    	<th>Time</th>
+		    	<th>Price</th>
 		    </tr>
 
 		    <?php
@@ -162,14 +229,14 @@
 			}
         }
         // Free result set
-		mysqli_free_result($result);
+		//mysqli_free_result($result);
 
-		mysqli_close($con);
-        /* Connection Debugging	
-        *else{
+		//$con->close();
+         /*Connection Debugging	*/
+        else{
             echo "Prepare failed: (" . $con->errno . ") " . $con->error;
         }
-        */
+        
     }
     else{
     	echo "Search Something!";

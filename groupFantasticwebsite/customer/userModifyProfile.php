@@ -27,7 +27,7 @@
             <form action="" method="post">
   <div id="edit">
       <label for="name">Username:</label>
-      <input type="text" name="name" id="name" placeholder="<?php echo $Username;?>" />
+      <input type="text" name="name" id="name" placeholder="<?php echo $Username;?>"/>
     <br>    
 
       <label for="pass">Password:</label>
