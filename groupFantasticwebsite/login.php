@@ -7,8 +7,9 @@ if (!empty($_POST)) {
     //gets user's info based off of a username.
     $query = " 
             SELECT 
-                CPersonID, 
-                Username, 
+                CPersonID,
+                CustomerId, 
+                Username,
                 Password
             FROM customer 
             WHERE 
@@ -53,6 +54,10 @@ if (!empty($_POST)) {
     if ($login_ok) {
         $response["success"] = 1;
         $response["message"] = "Login successful!";
+        $_SESSION["PersonID"] = $row['CPersonID'];
+        $_SESSION["Username"] = $row['Username'];
+        $_SESSION["CustomerId"] = $row['CustomerId'];
+        
         header("Location:customer/Cdashboard.php");
         exit();
         die(json_encode($response));

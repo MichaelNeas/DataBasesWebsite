@@ -11,10 +11,14 @@
 </head>
 
 <body>
+	<?php
+	include('../globalIncludes/config.ini.php');
+?>
 <header>
 	<img src="http://i67.tinypic.com/x58nr7.png" id="logo">
     <img src="http://i63.tinypic.com/2lxxith.png" id="chinook">
 	<h1>Administrator Dashboard</h1>
+	<h5>Welcome <?php echo $_SESSION["Username"];?></h5>
 </header> <!--Banner -->
 
 <div class="container-fluid">
@@ -25,6 +29,3 @@
 	
 	<div id="Bcolor" class="content">		
 	
-	<?php
-	include('../globalIncludes/config.ini.php');
-?>

@@ -3,21 +3,72 @@
 ?>
 
   <h1 style="text-align:center;">Modify Customers And Self Information</h1>
-  
-<form action="#">
-  <div id="edit">
-  
-       <select name="select_name"> 
-        <option value="Not Pulling DB">Place Holder Fill Customers</option>
-    <!--<?php /*
-      foreach($employees as $employee) 
-    { 
-      echo '<option value="'.$employee->first_name .'">'.$employee->first_name .'</option>'; 
-    } 
-    */?> -->
-      </select>
-      <br><br>
 
+
+
+  <form method="post" action="" style="padding:10px; text-align:center;">     
+    <select name="personID"> 
+        <option value="">All Customers</option>
+
+    <?php 
+        $query = "SELECT PersonID,FirstName,LastName FROM person ORDER BY person.LastName ASC";
+        if ($stmt = $con->prepare($query)) {
+                $stmt->execute();
+          $stmt->bind_result($PersonID, $FirstName, $LastName);
+          while ($stmt->fetch()) {
+              echo '<option value="'.$PersonID.'">' .$LastName. ",".$FirstName.'</option>';
+          }
+        }
+        /*else{
+            echo "Prepare failed: (" . $con->errno . ") " . $con->error;
+        }
+        $con->close();*/
+    ?>
+
+      </select>
+      <input name="fillTableSubmit" type="submit" style:"padding-top: 0px;" value="Change me!">
+      </form>
+
+<?php   
+/* Connection Debugging 
+    if ($con->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } 
+    else{
+        echo "connected";
+    }*/
+    //echo $_POST['personID'];
+    if(isset($_POST["fillTableSubmit"])){
+        $personID = $_POST['personID'];
+        //echo $personID;
+            $query = "SELECT * FROM person WHERE PersonID = ?";
+        if ($stmt = $con->prepare($query)) {
+            $stmt->bind_param("i", $personID); 
+            $stmt->execute();
+            $stmt->store_result();
+            $stmt->bind_result($PersonID, $FirstName, $LastName, $Address, $City, $State, $Country, $PostalCode, $Phone, $Fax, $Email);
+            $stmt->fetch();
+
+
+
+        }
+        // Free result set
+
+    $con->close();
+        /* Connection Debugging s
+        *else{
+            echo "Prepare failed: (" . $con->errno . ") " . $con->error;
+        }
+        */
+    }
+    //else{
+      //echo "No Button Registerd";
+    //}
+?>  
+
+  
+<form action="" method="post">
+  <div id="edit">
 
       <label for="name">Username:</label>
       <input type="text" name="name" id="name" placeholder="Username" />
@@ -65,7 +116,7 @@
 
     <label for="country">Country:</label>
     <input type="text" name="country" id="country" placeholder="Country" />
-    <br>    
+    <br>   
         
         <div id="submit">
           <input type="submit" value="Submit" />

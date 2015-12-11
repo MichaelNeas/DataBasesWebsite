@@ -3,7 +3,7 @@
 	?>
 
 	Homescreen of the Employee dashboard!
-			<div class = "activeCustomersOrders">
+		<div class = "activeCustomersOrders">
 				<h1>All Active Customer Orders </h1>
 		<table class="rwd-table">
 		  <tr>

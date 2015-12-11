@@ -54,7 +54,7 @@
     mysqli_free_result($result);
 
     mysqli_close($con);
-        /* Connection Debugging 
+        /* Connection Debugging s
         *else{
             echo "Prepare failed: (" . $con->errno . ") " . $con->error;
         }

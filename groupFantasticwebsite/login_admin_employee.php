@@ -7,7 +7,8 @@ if (!empty($_POST)) {
     //gets user's info based off of a username.
     $query = " 
             SELECT 
-                PersonID, 
+                PersonID,
+                EmployeeId, 
                 Username, 
                 Password,
                 Admin
@@ -60,6 +61,9 @@ if (!empty($_POST)) {
     } elseif ($login_ok && $row['Admin'] !== 1) {
         $response["success"] = 1;
         $response["message"] = "Login successful!";
+        $_SESSION["PersonID"] = $row['PersonID'];
+        $_SESSION["Username"] = $row['Username'];
+        $_SESSION["EmployeeId"] = $row['EmployeeId'];
         header("Location:employee/Edashboard.php");
         exit();
         die(json_encode($response));

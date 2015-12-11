@@ -33,7 +33,7 @@
 						),
 
 					array(
-						slug  => "../login.php",
+						slug  => "../globalIncludes/logout.php",
 						title => "Logout"
 						),
 		);

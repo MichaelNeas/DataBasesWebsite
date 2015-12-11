@@ -9,4 +9,6 @@ $dbname="chinook";
 $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
     or die ('Could not connect to the database server' . mysqli_connect_error());
     echo "Connection to DB is succesful!";
+
+    session_start();
 ?>
