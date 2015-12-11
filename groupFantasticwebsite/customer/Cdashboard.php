@@ -8,13 +8,15 @@
 		<h1>Active Orders | What's in your shopping cart.</h1>
 		<table class="rwd-table">
 		  <tr>
-		    <th>Order ID</th>
-		    <th>Topic</th>
-		    <th>Total Price</th>
+		    <th>Order Id</th>
+		    <th>Track Name</th>
+		    <th>Artist Name</th>
+		    <th>Album Name</th>
+		    <th>Price</th>
 		  </tr>
 
 <?php
-$query = "CREATE TEMPORARY TABLE ids (     artistname VARCHAR(60), 	albumname VARCHAR(120),     trackname VARCHAR(60), 	itemID INT(11),     Price DECIMAL(10,2) )";
+$query = "CREATE TEMPORARY TABLE ids ( artistname VARCHAR(60), 	albumname VARCHAR(120),     trackname VARCHAR(60), 	itemID INT(11),     Price DECIMAL(10,2), 	trackid INT(11) )";
 if ($stmt = $con->prepare($query)) {
 	$stmt->execute();
 	$stmt->bind_result($field1, $field2);
@@ -27,63 +29,84 @@ echo "Doesnt work";
 }
 
 $personID = $_SESSION['PersonID'];
-$query = "INSERT INTO ids ( artistname, albumname, trackname, itemID, Price ) select artist.name, album.title, track.name, shoppingcart.ItemID, track.UnitPrice FROM shoppingcart join chinook.customer on SCustomerID = customer.CustomerId join chinook.person on person.PersonID = customer.CPersonID AND person.PersonID = 72 join chinook.trackitem on trackitem.Titemid = shoppingcart.ItemID join chinook.track on track.trackid = trackitem.realtrackid join chinook.album on album.AlbumId = track.AlbumId join chinook.artist on artist.ArtistId = album.ArtistId";
+$query = "INSERT INTO ids ( artistname, albumname, trackname, itemID, Price, trackid ) select artist.name, album.title, track.name, shoppingcart.ItemID, track.UnitPrice, track.trackid FROM shoppingcart join chinook.customer on SCustomerID = customer.CustomerId join chinook.person on person.PersonID = customer.CPersonID AND person.PersonID = ? join chinook.trackitem on trackitem.Titemid = shoppingcart.ItemID join chinook.track on track.trackid = trackitem.realtrackid join chinook.album on album.AlbumId = track.AlbumId join chinook.artist on artist.ArtistId = album.ArtistId";
 
 if ($stmt = $con->prepare($query)) {
+	$stmt->bind_param("i", $personID); 
 	$stmt->execute();
-	$stmt->bind_result($name, $title, $name1, $ItemID, $UnitPrice);
+	$stmt->bind_result($name, $title, $name1, $ItemID, $UnitPrice, $trackid);
 	while ($stmt->fetch()) {
-    	//printf("%s, %s, %s, %s, %s\n", $name, $title, $name1, $ItemID, $UnitPrice);
+    	//printf("%s, %s, %s, %s, %s, %s\n", $name, $title, $name1, $ItemID, $UnitPrice, $trackid);
 	}
 	$stmt->close();
 }else{
-echo "Doesnt work";
+echo "Track not here";
 }
 
 
 $personID = $_SESSION['PersonID'];
-$query = "INSERT INTO ids ( artistname, albumname, trackname, itemID, Price ) select artist.name, album.title, track.name, shoppingcart.ItemID, track.UnitPrice FROM (shoppingcart,album) join chinook.customer on SCustomerID = customer.CustomerId join chinook.person on person.PersonID = customer.CPersonID and person.personid = 72 join chinook.albumitem on albumitem.Aitemid = shoppingcart.ItemID and albumitem.realalbumid = album.AlbumId join chinook.track on album.AlbumId = track.AlbumId join chinook.artist on artist.ArtistId = album.ArtistId";
-
+$query = "INSERT INTO ids ( artistname, albumname, trackname, itemID, Price, trackid ) select artist.name, album.title, track.name, shoppingcart.ItemID, track.UnitPrice, track.trackid FROM (shoppingcart,album) join chinook.customer on SCustomerID = customer.CustomerId join chinook.person on person.PersonID = customer.CPersonID and person.personid = ? join chinook.albumitem on albumitem.Aitemid = shoppingcart.ItemID and albumitem.realalbumid = album.AlbumId join chinook.track on album.AlbumId = track.AlbumId join chinook.artist on artist.ArtistId = album.ArtistId";
 
 if ($stmt = $con->prepare($query)) {
+	$stmt->bind_param("i", $personID); 
 	$stmt->execute();
-	$stmt->bind_result($name, $title, $name1, $ItemID, $UnitPrice);
+	$stmt->bind_result($name, $title, $name1, $ItemID, $UnitPrice, $trackid);
 	while ($stmt->fetch()) {
-    	//printf("%s, %s, %s, %s, %s\n", $name, $title, $name1, $ItemID, $UnitPrice);
+    	//printf("%s, %s, %s, %s, %s, %s\n", $name, $title, $name1, $ItemID, $UnitPrice, $trackid);
 	}
 	$stmt->close();
 }else{
-echo "Doesnt work";
+echo "Albums not there";
 }
 
 
 $personID = $_SESSION['PersonID'];
-$query = "INSERT INTO ids ( artistname, albumname, trackname, itemID, Price ) select DISTINCT artist.name, album.title, track.name, shoppingcart.ItemID, track.UnitPrice FROM (shoppingcart,playlist) join chinook.customer on shoppingcart.SCustomerID = customer.CustomerID AND shoppingcart.ScustomerID = customer.customerID join chinook.person on person.PersonID = customer.CPersonID and person.personid = 72 join chinook.playlistitem on playlistitem.pitemid = shoppingcart.ItemID join chinook.playlisttrack on playlisttrack.PlaylistId = playlistitem.realplaylistid join chinook.track on track.trackid = playlisttrack.trackid join chinook.album on album.albumid = track.albumid join chinook.artist on album.artistid = artist.artistid";
+$query = "INSERT INTO ids ( artistname, albumname, trackname, itemID, Price, trackid ) select DISTINCT artist.name, album.title, track.name, shoppingcart.ItemID, track.UnitPrice, track.trackid FROM (shoppingcart,playlist) join chinook.customer on shoppingcart.SCustomerID = customer.CustomerID AND shoppingcart.ScustomerID = customer.customerID join chinook.person on person.PersonID = customer.CPersonID and person.personid = ? join chinook.playlistitem on playlistitem.pitemid = shoppingcart.ItemID join chinook.playlisttrack on playlisttrack.PlaylistId = playlistitem.realplaylistid join chinook.track on track.trackid = playlisttrack.trackid join chinook.album on album.albumid = track.albumid join chinook.artist on album.artistid = artist.artistid";
 
 
 if ($stmt = $con->prepare($query)) {
+	$stmt->bind_param("i", $personID); 
 	$stmt->execute();
-	$stmt->bind_result($name, $title, $name1, $ItemID, $UnitPrice);
+	$stmt->bind_result($name, $title, $name1, $ItemID, $UnitPrice, $trackid);
 	while ($stmt->fetch()) {
-    	//printf("%s, %s, %s, %s, %s\n", $name, $title, $name1, $ItemID, $UnitPrice);
+    	//printf("%s, %s, %s, %s, %s, %s\n", $name, $title, $name1, $ItemID, $UnitPrice, $trackid);
 	}
 	$stmt->close();
 }else{
-echo "Doesnt work";
+echo "Playlist not there";
 }
 
-$personID = $_SESSION['PersonID'];
+//$personID = $_SESSION['PersonID'];
 $query = "select artistname,albumname,trackname,itemid,Price from ids";
 
 if ($stmt = $con->prepare($query)) {
 	$stmt->execute();
+	$stmt->store_result(); //<-- This needs to be called here!
+   	$num_of_rows = $stmt->num_rows;  
+
 	$stmt->bind_result($artistname, $albumname, $trackname, $itemid, $Price);
+	 //printf("Result set has %d rows.\n", $num_of_rows);
+	if($num_of_rows != 0){
 	while ($stmt->fetch()) {
-    	printf("%s, %s, %s, %s, %s\n", $artistname, $albumname, $trackname, $itemid, $Price);
+    	//printf("%s, %s, %s, %s, %s\n", $artistname, $albumname, $trackname, $itemid, $Price);
+    	?>
+		<tr>
+		    <td data-th="invoiceID"><?php echo '#'.$itemid.''; ?></td>
+		    <td data-th="artistShopping"><?php echo $artistname;?></td>
+		    <td data-th="artistShoppingCart"><?php echo $artistname; ?></td>
+		    <td data-th="albumShoppingCart"><?php echo $albumname; ?></td>
+		    <td data-th="totalPrice"><?php echo '$ '.$Price.''; ?></td>
+		  </tr>
+
+    	<?php
 	}
+			}
+			else{
+				echo "No items in your shopping cart!";
+			}
 	$stmt->close();
 }else{
-echo "Doesnt work";
+echo "Selecting doesnt work";
 }
 
 $query = "drop table ids";
@@ -107,8 +130,10 @@ echo "Doesnt work";
 		<table class="rwd-table">
 		  <tr>
 		    <th>Invoice ID</th>
-		    <th>Date</th>
-		    <th>Billing City</th>
+		    <th>Date Ordered</th>
+		    <th>Track Name</th>
+		    <th>Artist</th>
+		    <th>Album</th>
 		    <th>Total</th>
 		    <th>Payment Chosen</th>
 		    </tr>
@@ -116,56 +141,55 @@ echo "Doesnt work";
 /* Connection Debugging	
     if ($con->connect_error) {
         die("Connection failed: " . $conn->connect_error);
-    } 
-    else{
-        echo "connected";
-    }*/
-    //echo $_POST['personID'];
-        $personID = $_SESSION['PersonID'];
-        //echo $trackName;
+    }*/ 
+ 
+       	$personID = $_SESSION['PersonID'];
+        //echo $personID;
         //Select invoice.CustomerId, InvoiceDate, BillingAddress, BillingCity, BillingState, BillingCountry, BillingPostalCode , Total, PaymentOption from (invoice,person,customer) where person.PersonID = customer.CPersonID and customer.CustomerId = invoice.CustomerId and personID = ?;
-            $query = "Select InvoiceID, InvoiceDate, BillingAddress, BillingCity, BillingState, BillingCountry, BillingPostalCode , Total, PaymentOption
- 						from (invoice,person,customer) where person.PersonID = customer.CPersonID
- 						and customer.CustomerId = invoice.CustomerId and person.PersonID = ?";
-        	if ($stmt = $con->prepare($query)) {
+           $query = "select artist.name, album.title, track.name, invoice.invoiceid, invoice.InvoiceDate, invoice.total, invoice.paymentoption from person join chinook.customer on person.PersonID = customer.CPersonID and person.personid = ? join chinook.invoice on customer.CustomerId = invoice.CustomerId join chinook.invoiceline on invoiceline.InvoiceId = invoice.InvoiceId join chinook.track on invoiceline.trackid = track.trackid join chinook.album on track.albumid = album.albumid join chinook.artist on artist.ArtistId = album.ArtistId";
+            
+            if ($stmt = $con->prepare($query)) {
             $stmt->bind_param("i", $personID); 
-            $stmt->execute();
-            $stmt->store_result();
-            $stmt->bind_result($InvoiceID, $InvoiceDate, $BillingAddress, $BillingCity, $BillingState, $BillingCountry, $BillingPostalCode, $Total, $PaymentOption);
-            if($stmt->num_rows != 0){
-            while($stmt->fetch()){
+			
+			$stmt->execute();
+			$stmt->store_result(); //<-- This needs to be called here!
+    		$num_of_rows = $stmt->num_rows;  
+			$stmt->bind_result($name, $title, $name1, $invoiceid, $InvoiceDate, $total, $paymentoption);
+    		//printf("Result set has %d rows.\n", $num_of_rows);
+			if($num_of_rows != 0){
+			while ($stmt->fetch()) {
+
+    	//printf("%s, %s, %s, %s, %s, %s, %s\n", $name, $title, $name1, $invoiceid, $InvoiceDate, $total, $paymentoption);
 			?>		  
 		  <tr>
-		    <td data-th="invoiceID"><?php echo '#'.$InvoiceID.''; ?></td>
-		    <td data-th="invoiceDate"><?php echo date( "m-d-Y", strtotime( $InvoiceDate ) );?></td>
-		    <td data-th="billingCity"><?php echo $BillingCity; ?></td>
-		    <td data-th="paymentOptions"><?php echo '$ '.$Total.''; ?></td>
-		    <td data-th="total"><?php echo $PaymentOption; ?></td>
+		    <td data-th="invoiceID"><?php echo '#'.$invoiceid.''; ?></td>
+			<td data-th="invoiceDate"><?php echo date( "m-d-Y", strtotime( $InvoiceDate ) );?></td>
+		    <td data-th="trackOrdered"><?php echo $name1; ?></td>
+		    <td data-th="artistOrdered"><?php echo $name; ?></td>
+		    <td data-th="albumOrdered"><?php echo $title; ?></td>
+		    <td data-th="totalpaid"><?php echo '$ '.$total.''; ?></td>
+		    <td data-th="paymentOptions"><?php echo $paymentoption; ?></td>
 		  </tr>
 	<?php
 
 			}
+		}
+			else{
+				echo "You have no previous orders";
+			}
+			$stmt->close();
+    		unset($params);
         }
         else{
-        	echo "You have no order history";
+        	echo "Query Broke";
         }
-        // Free result set
-		//mysqli_free_result($result);
-    $stmt->close();
-    unset($params);
         /* Connection Debugging	
         *else{
             echo "Prepare failed: (" . $con->errno . ") " . $con->error;
         }
-        */
-    }
-    else{
-    	echo "fail";
-    }
-   
+       */ 
 ?>	
 		</table>
-
 	</div>
 
 
