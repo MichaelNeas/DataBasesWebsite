@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<?phps
+	<?php
 	include('../globalIncludes/config.ini.php');
 ?>
 <header>
@@ -20,8 +20,6 @@
 	<h1>Administrator Dashboard</h1>
 	<div style="float:right; margin-right:5%;">
 		<strong>Welcome <?php echo $_SESSION["Username"];?>
-		<a href="../admin/userModifyProfile.php"><button>Edit Profile</button></a>
-		<a href="../admin/userShoppingCart.php"><button>My Shopping Cart</button></a>
 	</div>
 </header> <!--Banner -->
 

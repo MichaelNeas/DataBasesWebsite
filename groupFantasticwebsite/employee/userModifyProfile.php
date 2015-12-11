@@ -1,9 +1,7 @@
 <?php 
     include('includes/header.php');
 ?>
-
   <h1 style="text-align:center;">Modify Customers And Self Information</h1>
-
 
 
   <form method="post" action="" style="padding:10px; text-align:center;">     

@@ -6,7 +6,7 @@
 
   <form method="post" action="" style="padding:10px; text-align:center;">     
     <select name="personID"> 
-        <option value="">All Customers</option>
+        <option value="">All People</option>
 
     <?php 
         $query = "SELECT PersonID,FirstName,LastName FROM person ORDER BY person.LastName ASC";
@@ -17,10 +17,10 @@
               echo '<option value="'.$PersonID.'">' .$LastName. ",".$FirstName.'</option>';
           }
         }
-        /*else{
-            echo "Prepare failed: (" . $con->errno . ") " . $con->error;
-        }
-        $con->close();*/
+        //else{
+          //  echo "Prepare failed: (" . $con->errno . ") " . $con->error;
+        //}
+        //$con->close();
     ?>
 
       </select>
@@ -51,9 +51,7 @@
 
         }
         // Free result set
-    mysqli_free_result($result);
-
-    mysqli_close($con);
+      $con->close();
         /* Connection Debugging s
         *else{
             echo "Prepare failed: (" . $con->errno . ") " . $con->error;

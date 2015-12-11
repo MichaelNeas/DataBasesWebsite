@@ -26,12 +26,7 @@
 						slug  => "userShoppingCart.php",
 						title => "Shopping Cart"
 						),
-
-					array(
-						slug  => "userModifyProfile.php",
-						title => "Modify Profile"
-						),
-
+					
 					array(
 						slug  => "../globalIncludes/logout.php",
 						title => "Logout"
