@@ -14,7 +14,7 @@
 		  </tr>
 
 <?php
-$query = "CREATE TEMPORARY TABLE ids (     idname VARCHAR(320), 	itemID INT(11),     Price DECIMAL(10,2) )";
+$query = "CREATE TEMPORARY TABLE ids (     artistname VARCHAR(60), 	albumname VARCHAR(120),     trackname VARCHAR(60), 	itemID INT(11),     Price DECIMAL(10,2) )";
 if ($stmt = $con->prepare($query)) {
 	$stmt->execute();
 	$stmt->bind_result($field1, $field2);
@@ -27,51 +27,62 @@ echo "Doesnt work";
 }
 
 $personID = $_SESSION['PersonID'];
-$query = "INSERT INTO ids ( idname, itemID, Price ) select CONCAT(artist.name,' - ',track.name), shoppingcart.ItemID, track.UnitPrice FROM shoppingcart join chinook.customer on SCustomerID = customer.CustomerId join chinook.person on person.PersonID = customer.CPersonID AND person.PersonID = ? join chinook.trackitem on trackitem.Titemid = shoppingcart.ItemID join chinook.track on track.trackid = trackitem.realtrackid join chinook.album on album.AlbumId = track.AlbumId join chinook.artist on artist.ArtistId = album.ArtistId";
+$query = "INSERT INTO ids ( artistname, albumname, trackname, itemID, Price ) select artist.name, album.title, track.name, shoppingcart.ItemID, track.UnitPrice FROM shoppingcart join chinook.customer on SCustomerID = customer.CustomerId join chinook.person on person.PersonID = customer.CPersonID AND person.PersonID = 72 join chinook.trackitem on trackitem.Titemid = shoppingcart.ItemID join chinook.track on track.trackid = trackitem.realtrackid join chinook.album on album.AlbumId = track.AlbumId join chinook.artist on artist.ArtistId = album.ArtistId";
 
 if ($stmt = $con->prepare($query)) {
-	$stmt->bind_param("i", $personID); 
 	$stmt->execute();
-	$stmt->bind_result($name, $ItemID, $UnitPrice);
-	unset($params);
+	$stmt->bind_result($name, $title, $name1, $ItemID, $UnitPrice);
+	while ($stmt->fetch()) {
+    	//printf("%s, %s, %s, %s, %s\n", $name, $title, $name1, $ItemID, $UnitPrice);
+	}
+	$stmt->close();
+}else{
+echo "Doesnt work";
+}
+
+
+$personID = $_SESSION['PersonID'];
+$query = "INSERT INTO ids ( artistname, albumname, trackname, itemID, Price ) select artist.name, album.title, track.name, shoppingcart.ItemID, track.UnitPrice FROM (shoppingcart,album) join chinook.customer on SCustomerID = customer.CustomerId join chinook.person on person.PersonID = customer.CPersonID and person.personid = 72 join chinook.albumitem on albumitem.Aitemid = shoppingcart.ItemID and albumitem.realalbumid = album.AlbumId join chinook.track on album.AlbumId = track.AlbumId join chinook.artist on artist.ArtistId = album.ArtistId";
+
+
+if ($stmt = $con->prepare($query)) {
+	$stmt->execute();
+	$stmt->bind_result($name, $title, $name1, $ItemID, $UnitPrice);
+	while ($stmt->fetch()) {
+    	//printf("%s, %s, %s, %s, %s\n", $name, $title, $name1, $ItemID, $UnitPrice);
+	}
+	$stmt->close();
+}else{
+echo "Doesnt work";
+}
+
+
+$personID = $_SESSION['PersonID'];
+$query = "INSERT INTO ids ( artistname, albumname, trackname, itemID, Price ) select DISTINCT artist.name, album.title, track.name, shoppingcart.ItemID, track.UnitPrice FROM (shoppingcart,playlist) join chinook.customer on shoppingcart.SCustomerID = customer.CustomerID AND shoppingcart.ScustomerID = customer.customerID join chinook.person on person.PersonID = customer.CPersonID and person.personid = 72 join chinook.playlistitem on playlistitem.pitemid = shoppingcart.ItemID join chinook.playlisttrack on playlisttrack.PlaylistId = playlistitem.realplaylistid join chinook.track on track.trackid = playlisttrack.trackid join chinook.album on album.albumid = track.albumid join chinook.artist on album.artistid = artist.artistid";
+
+
+if ($stmt = $con->prepare($query)) {
+	$stmt->execute();
+	$stmt->bind_result($name, $title, $name1, $ItemID, $UnitPrice);
+	while ($stmt->fetch()) {
+    	//printf("%s, %s, %s, %s, %s\n", $name, $title, $name1, $ItemID, $UnitPrice);
+	}
 	$stmt->close();
 }else{
 echo "Doesnt work";
 }
 
 $personID = $_SESSION['PersonID'];
-$query = "INSERT INTO ids ( idname, itemID, Price ) select CONCAT(artist.name,' - ',album.Title) AS albumname, shoppingcart.ItemID, (count(track.name) * track.UnitPrice) AS Price FROM (shoppingcart,album) join chinook.customer on SCustomerID = customer.CustomerId join chinook.person on person.PersonID = customer.CPersonID and person.personid = ? join chinook.albumitem on albumitem.Aitemid = shoppingcart.ItemID and albumitem.realalbumid = album.AlbumId join chinook.track on album.AlbumId = track.AlbumId join chinook.artist on artist.ArtistId = album.ArtistId GROUP BY albumname";
-
-
-if ($stmt = $con->prepare($query)) {
-	$stmt->bind_param("i", $personID); 
-	$stmt->execute();
-	$stmt->bind_result($albumname, $ItemID, $Price);
-	$stmt->fetch();
-	unset($params);
-	$stmt->close();
-}else{
-    echo "Prepare failed: (" . $con->errno . ") " . $con->error;
- }
-
-
-$query = "select idname, itemID, Price from ids";
+$query = "select artistname,albumname,trackname,itemid,Price from ids";
 
 if ($stmt = $con->prepare($query)) {
 	$stmt->execute();
-	$stmt->bind_result($idname, $itemID, $Price );
+	$stmt->bind_result($artistname, $albumname, $trackname, $itemid, $Price);
 	while ($stmt->fetch()) {
-    	?>
-    		<tr>
-		    <td data-th="orderID"><?php echo '#'.$itemID.''; ?></td>
-		    <td data-th="orderTopic"><?php echo $idname; ?></td>
-		    <td data-th="orderprice"><?php echo '$ '.$Price.''; ?></td>
-		  </tr>
-    	<?php
+    	printf("%s, %s, %s, %s, %s\n", $artistname, $albumname, $trackname, $itemid, $Price);
 	}
 	$stmt->close();
-}
-else{
+}else{
 echo "Doesnt work";
 }
 
@@ -83,7 +94,10 @@ if ($stmt = $con->prepare($query)) {
     	//printf("%s, %s\n", $field1, $field2);
 	}
 	$stmt->close();
+}else{
+echo "Doesnt work";
 }
+
 ?>
 	</table>
 </div>

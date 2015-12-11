@@ -1,5 +1,63 @@
-<?php 
+<?php
+
+  ob_start();
+
 	include('includes/header.php');
+
+  if (!empty($_POST)) {
+
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+    $sql = "SELECT 1 FROM employee WHERE Username = ?";
+    $stmt = $con->prepare($sql);
+    $Username = $_POST["Username"];
+    $stmt->bind_param('s', $Username);
+    $stmt->execute();
+
+    $row = $stmt->fetch();
+
+    if($row) {
+      header("Location:newEmployee.php?message=unavail");
+      exit();
+    }
+
+    $sql = "INSERT INTO person (FirstName, LastName, Address, City, State, Country, PostalCode, Phone, Fax, Email) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    $stmt = $con->prepare($sql);
+
+    $FirstName = $_POST["FirstName"];
+    $LastName = $_POST["LastName"];
+    $Address = $_POST["Address"];
+    $City = $_POST["City"];
+    $State = $_POST["State"];
+    $Country = $_POST["Country"];
+    $PostalCode = $_POST["FirstName"];
+    $Phone = $_POST["Phone"];
+    $Fax = $_POST["Fax"];
+    $Email = $_POST["Email"];
+
+    $stmt->bind_param('ssssssssss', $FirstName, $LastName, $Address, $City, $State, $Country, $PostalCode, $Phone, $Fax, $Email);
+    $stmt->execute();
+
+    $sql = "INSERT INTO employee (PersonID, Title, ReportsTo, BirthDate, HireDate, Username, Password, Admin, Reputation) VALUES (@@identity,?,?,?,?,?,?,?,?)";
+
+    $stmt = $con->prepare($sql);
+    $Title = $_POST["Title"];
+    $ReportsTo = $_POST["ReportsTo"];
+    $BirthDate = $_POST["BirthDate"];
+    $HireDate = $_POST["HireDate"];
+    $Username = $_POST["Username"];
+    $Password = $_POST["Password"];
+    $Admin = $_POST["Admin"];
+    $Reputation = $_POST["Reputation"];
+
+    $stmt->bind_param('sissssii', $Title, $ReportsTo, $BirthDate, $HireDate, $Username, $Password, $Admin, $Reputation);
+    $stmt->execute();
+
+    header("Location:newEmployee.php?message=success");
+    exit();
+
+} else {
+
 	?>
 
 <h3 id="title"> New Employee Registration </h3>
@@ -35,12 +93,10 @@
       <input type="text" name="Phone" required class="form-control" id="Phone" autocomplete: "off">
       <label for="">Fax</label>
       <input type="text" name="Fax" class="form-control" id="Fax" autocomplete: "off">
-      <label for="">Admin</label>
-      <input type="text" name="Admin" class="form-control" id="Admin" autocomplete: "off">
       <label for="">BirthDate</label>
-      <input type="text" name="BirthDate" class="form-control" id="BirthDate" autocomplete: "off">
+      <input type="date" name="BirthDate" class="form-control" id="BirthDate" autocomplete: "off">
       <label for="">HireDate</label>
-      <input type="text" name="HireDate" class="form-control" id="HireDate" autocomplete: "off">
+      <input type="date" name="HireDate" class="form-control" id="HireDate" autocomplete: "off">
       <label for="">ReportsTo</label>
       <input type="text" name="ReportsTo" class="form-control" id="ReportsTo" autocomplete: "off">
       <label for="">Reputation</label>
@@ -49,8 +105,8 @@
       <input type="text" name="Title" class="form-control" id="Title" autocomplete: "off">
       <br>
       <div style="text-align:center;">
-      <input type="radio" name="isAdmin" value="yesAdmin"> Admin
-      <input type="radio" name="isAdmin" value="noAdmin"> Employee
+      <input type="radio" name="Admin" value="1"> Admin
+      <input type="radio" name="Admin" checked="checked" value="0"> Employee
       <br><br>
       <button type="submit" class="buttonLayoutSubmit" name="submit"><small>Submit</small></button>
       </div>
@@ -64,6 +120,9 @@
 
 	
 <?php
+
+}
+
 if($_GET['message'] == "invalid") {
     echo "<script> alertLine(); </script>";
 }

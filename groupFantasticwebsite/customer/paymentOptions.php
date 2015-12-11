@@ -36,6 +36,7 @@
 
 
  <div id ="paymentType">
+ <h2 style="text-align:left;">Google Pay</h2>
 <form action="setGPay">
   <div>
     <label for="chname">Google Pay Email:</label>
@@ -50,6 +51,7 @@
 </div>
 
  <div id ="paymentType">
+ <h2 style="text-align:left;">Apple Pay</h2>
 <form action="setAPay">
   <div>
     <label for="chname">Apple Pay Email:</label>
@@ -64,6 +66,7 @@
 </div>
 
  <div id ="paymentType">
+ <h2 style="text-align:left;">Pay Pal</h2>
 <form action="setPPay">
   <div>
     <label for="chname">Paypal Email:</label>

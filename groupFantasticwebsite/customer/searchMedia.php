@@ -114,7 +114,14 @@ Search Media
     $stmt->bind_param('i', $CustomerID);
     $stmt->execute();
 
+    $sql = "INSERT INTO trackitem (Titemid, realtrackid) VALUES (@@identity, ?)";
+    $stmt = $con->prepare($sql);
+    $TrackID = $_POST["buytrackID"];
+    $stmt->bind_param('i', $TrackID);
+    $stmt->execute();
+
     echo '<script type="text/javascript">alert("Added to cart!"); </script>';
+
 
   }
 
