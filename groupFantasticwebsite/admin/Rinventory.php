@@ -29,9 +29,9 @@
 
       </tr>
       <tr>
-        <td data-th="trackInv">Star Wars</td>
-        <td data-th="albumInv">Sci-fi</td>
-        <td data-th="artistInv">Kid Rock</td>
+        <td data-th="trackInv">Zither</td>
+        <td data-th="albumInv">My Way Home</td>
+        <td data-th="artistInv">Zithering</td>
         <td data-th="genreInv">Rock</td>
         <td data-th="priceInv">$460,935,665</td>
         <td data-th="dateInv">1974</td>

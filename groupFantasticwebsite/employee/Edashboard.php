@@ -4,7 +4,7 @@
 
 	Homescreen of the Employee dashboard!
 		<div class = "activeCustomersOrders">
-				<h1>All Active Customer Orders </h1>
+				<h1>Most Recent Customer Orders </h1>
 		<table class="rwd-table">
 		  <tr>
 		    <th>Invoice ID</th>
@@ -12,19 +12,19 @@
 		    <th>Description</th>
 		  </tr>
 		  <tr>
-		    <td data-th="invoiceId">12312312</td>
-		    <td data-th="customer">Captain D</td>
-		    <td data-th="Description">Ordered: click for more info, popin with info</td>
+		    <td data-th="invoiceId">#12</td>
+		    <td data-th="customer">Joey Hanlon</td>
+		    <td data-th="Description"><a href="#"> Ordered: click for more info</a></td>
 		  </tr>
 		  <tr>
-		    <td data-th="invoiceId">12312312</td>
-		    <td data-th="customer">Captain D</td>
-		    <td data-th="Description">Ordered: click for more info</td>
+		    <td data-th="invoiceId">#82</td>
+		    <td data-th="customer">Mike Neas</td>
+		    <td data-th="Description"><a href="#"> Ordered: click for more info</a></td>
 		  </tr>
 		  <tr>
-		    <td data-th="invoiceId">12312312</td>
-		    <td data-th="customer">Captain D</td>
-		    <td data-th="Description">Ordered: click for more info</td>
+		    <td data-th="invoiceId">#25</td>
+		    <td data-th="customer">Alex Dow</td>
+		    <td data-th="Description"><a href="#"> Ordered: click for more info</a></td>
 		   </tr>
 		</table>
 

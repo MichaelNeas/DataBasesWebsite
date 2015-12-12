@@ -3,6 +3,7 @@
   overflow: auto;
 }
 
+
 /*Standard link buttons*/
 #alertLine {
   display:none;
@@ -115,6 +116,9 @@ a:hover{
 /*--!Playlist manipulation--*/
 
 
+#massiveSearchContainer{
+  width:100%;
+}
 
 /*--File Upload--*/
 
@@ -219,6 +223,7 @@ h1 {
 .rwd-table tr {
   border-color: #46637f;
 }
+
 .rwd-table th, .rwd-table td {
   margin: .5em 1em;
 }
@@ -235,7 +240,16 @@ h1 {
 
 /*--End of Customer Dashboard--*/
 
-
+.searchResults table th{
+    border-style: solid;
+    border-width: 1px;
+}
+.searchResults table td{
+    border-style: solid;
+    border-width: 1px;
+    border-top:none;
+    border-bottom:none;
+}
 /*--Search--*/
 
 .search{

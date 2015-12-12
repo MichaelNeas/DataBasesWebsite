@@ -4,16 +4,19 @@
 
 	<h2>Employee Generated Playlists</h2>
 		<button id="makePlaylist">Create New Global Playlist</button>
+	
+			<button id="makePlaylist">Create New Playlist</button>
+			<button id="destroyPlaylist">Remove Playlist</button>
 		<h5> Click object to show songs</h5>
 		<div id="playlistItem">
 			<a href="#" class="list-group-item">
 				<div>
 					<ol>
-						<li id="pName">Playlist Name: </li>
-						<li id="pCreator">Creator: </li>
-						<li id="pMadeTime">Made: </li>
-						<li id="pTheme">Theme: </li>
-						<li id="pPrice">Total Price: </li>
+						<li id="pName">Playlist Name: Awesome Playlist</li>
+						<li id="pCreator">Creator: Leonie</li>
+						<li id="pMadeTime">Made: Yesterday</li>
+						<li id="pTheme">Theme: Feeling Good</li>
+						<li id="pPrice">Total Price: $5.99</li>
 					</ol>
 				</div>
 
@@ -37,27 +40,27 @@
 
 		  </tr>
 		  <tr>
-		    <td data-th="Movie Title">Star Wars</td>
-		    <td data-th="Genre">Adventure, Sci-fi</td>
-		    <td data-th="Year">1977</td>
-		    <td data-th="Year">1977</td>
-		    <td data-th="Gross">$460,935,665</td>
+		    <td data-th="Movie Title">Let's Go</td>
+		    <td data-th="Genre">Greatest Hits</td>
+		    <td data-th="Year">Lil Jon</td>
+		    <td data-th="Year">Rap</td>
+		    <td data-th="Gross">$0.99</td>
 		    <td data-th="removeSongPlaylist"><button id="removeSongPlaylist" style="color:black;">Remove</button></td>
 		  </tr>
 		  <tr>
-		    <td data-th="Movie Title">Howard The Duck</td>
-		    <td data-th="Genre">"Comedy"</td>
-		    <td data-th="Year">1977</td>
-		    <td data-th="Year">1986</td>
-		    <td data-th="Gross">$16,295,774</td>
+		    <td data-th="Movie Title">Gone</td>
+		    <td data-th="Genre">Mess It</td>
+		    <td data-th="Year">MGK</td>
+		    <td data-th="Year">RAP</td>
+		    <td data-th="Gross">$1.99</td>
 		    <td data-th="removeSongPlaylist"><button id="removeSongPlaylist" style="color:black;">Remove</button></td>
 		  </tr>
 		  <tr>
-		    <td data-th="Movie Title">American Graffiti</td>
-		    <td data-th="Genre">Comedy, Drama</td>
-		    <td data-th="Year">1977</td>
-		    <td data-th="Year">1973</td>
-		    <td data-th="Gross">$115,000,000</td>
+		    <td data-th="Movie Title">Lose Yourself</td>
+		    <td data-th="Genre">Behind A Curtain</td>
+		    <td data-th="Year">Eminem</td>
+		    <td data-th="Year">Hip-Hop</td>
+		    <td data-th="Gross">$2.99</td>
 		    <td data-th="removeSongPlaylist"><button id="removeSongPlaylist" style="color:black;">Remove</button></td>
 		  </tr>
 		</table>
@@ -86,33 +89,33 @@
 
 		  </tr>
 		  <tr>
-		    <td data-th="Movie Title">Star Wars</td>
-		    <td data-th="Genre">Adventure, Sci-fi</td>
-		    <td data-th="Year">1977</td>
-		    <td data-th="Year">1977</td>
-		    <td data-th="Gross">$460,935,665</td>
+		    <td data-th="Movie Title">Greatest Day</td>
+		    <td data-th="Genre">Greatest Hits</td>
+		    <td data-th="Year">Beatles</td>
+		    <td data-th="Year">Rock</td>
+		    <td data-th="Gross">$0.99</td>
 		    <td data-th="addToPlaylist"><button id="addToPlaylist" style="color:black;">Add To Playlist</button></td>
 		  </tr>
 		  <tr>
-		    <td data-th="Movie Title">Howard The Duck</td>
-		    <td data-th="Genre">"Comedy"</td>
-		    <td data-th="Year">1977</td>
-		    <td data-th="Year">1986</td>
-		    <td data-th="Gross">$16,295,774</td>
+		    <td data-th="Movie Title">Find Me</td>
+		    <td data-th="Genre">Everyone Has Another</td>
+		    <td data-th="Year">Silverstein</td>
+		    <td data-th="Year">Rock</td>
+		    <td data-th="Gross">FREE</td>
 		    <td data-th="addToPlaylist"><button id="addToPlaylist" style="color:black;">Add To Playlist</button></td>
 		  </tr>
 		  <tr>
-		    <td data-th="Movie Title">American Graffiti</td>
-		    <td data-th="Genre">Comedy, Drama</td>
-		    <td data-th="Year">1977</td>
-		    <td data-th="Year">1973</td>
-		    <td data-th="Gross">$115,000,000</td>
+		    <td data-th="Movie Title">Box of Rain</td>
+		    <td data-th="Genre">Steal your Face</td>
+		    <td data-th="Year">Grateful Dead</td>
+		    <td data-th="Year">Rock</td>
+		    <td data-th="Gross">$1.99</td>
 		    <td data-th="addToPlaylist"><button id="addToPlaylist" style="color:black;">Add To Playlist</button></td>
 		  </tr>
 		</table>
 
 	</div>
-
+	<!--Songs in playlist-->
 
 	<h2>All Customer Created Playlists</h2>
 		<div id="customerMyPlaylistItem">

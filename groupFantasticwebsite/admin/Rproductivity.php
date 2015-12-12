@@ -35,10 +35,10 @@
 			<a href="#" class="list-group-item">
 				<div>
 					<ol>
-						<li id="pFName">First Name: </li>
-						<li id="pLName">Last Name: </li>
-						<li id="pNumCust"># of Customers: </li>
-						<li id="pNumSale"># of Sales: </li>
+						<li id="pFName">First Name: Michael </li>
+						<li id="pLName">Last Name: Neas</li>
+						<li id="pNumCust"># of Customers: 1,000,000 </li>
+						<li id="pNumSale">Total Sales: 1.2billion </li>
 					</ol>
 				</div>
 			</a>

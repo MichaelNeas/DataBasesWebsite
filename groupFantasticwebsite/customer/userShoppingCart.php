@@ -5,7 +5,7 @@
 	<h2>Shopping Cart</h2>
 	<div>
 		<div>
-			<input type="submit" name="cartCheckout" value="Go to Checkout" />
+			<input type="submit" name="cartCheckout" value="Process Shopping Cart" />
 			<input type="submit" name="cartDelete" value="Delete Selected" />
 		</div>
 	
@@ -15,11 +15,11 @@
 			<a href="#" class="list-group-item">
 				<div>
 					<ol>
-						<li id="sName">Song Name: </li>
-						<li id="sArtist">Artist: </li>
-						<li id="sAlbum">Album Name: </li>
-						<li id="sGenre">Genre: </li>
-						<li id="sPrice">Price: </li>
+						<li id="sName">Song Name: Clear As Day</li>
+						<li id="sArtist">Artist: Clairity </li>
+						<li id="sAlbum">Album Name: Singing Alone</li>
+						<li id="sGenre">Genre: Alternative</li>
+						<li id="sPrice">Price: $1.99</li>
 					</ol>
 				</div>
 

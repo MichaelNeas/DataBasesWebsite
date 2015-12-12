@@ -56,34 +56,14 @@
 
 		  </tr>
 		  <tr>
-		    <td data-th="trackReport">Star Wars</td>
-		    <td data-th="albumReport">Adventure, Sci-fi</td>
-		    <td data-th="artistReport">1977</td>
-		    <td data-th="genreReport">1977</td>
-		    <td data-th="amountSold">$460,935,665</td>
-		    <td data-th="totalRevenue">1977</td>
+		    <td data-th="trackReport">Juicy</td>
+		    <td data-th="albumReport">Be Like Biggie</td>
+		    <td data-th="artistReport">Biggie Smalls</td>
+		    <td data-th="genreReport">Rap</td>
+		    <td data-th="amountSold">999,999</td>
+		    <td data-th="totalRevenue">$1,000,000</td>
 		   	<td data-th="mostRecent">Today</td>
-		    <td data-th="rating">stars</td>
-		  </tr>
-		  <tr>
-		    <td data-th="trackReport">Star Wars</td>
-		    <td data-th="albumReport">Adventure, Sci-fi</td>
-		    <td data-th="artistReport">1977</td>
-		    <td data-th="genreReport">1977</td>
-		    <td data-th="amountSold">$460,935,665</td>
-		    <td data-th="totalRevenue">1977</td>
-		   	<td data-th="mostRecent">Today</td>
-		    <td data-th="rating">stars</td>
-		  </tr>
-		  <tr>
-		    <td data-th="trackReport">Star Wars</td>
-		    <td data-th="albumReport">Adventure, Sci-fi</td>
-		    <td data-th="artistReport">1977</td>
-		    <td data-th="genreReport">1977</td>
-		    <td data-th="amountSold">$460,935,665</td>
-		    <td data-th="totalRevenue">1977</td>
-		   	<td data-th="mostRecent">Today</td>
-		    <td data-th="rating">stars</td>
+		    <td data-th="rating">5 stars</td>
 		  </tr>
 		</table>
 
