@@ -28,6 +28,11 @@
 						),
 
 					array(
+						slug => "employeeSupport.php",
+						title => "Support The Customers"
+						),
+
+					array(
 						slug  => "../globalIncludes/logout.php",
 						title => "Logout"
 						),

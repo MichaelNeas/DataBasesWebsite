@@ -26,10 +26,16 @@
 						slug  => "userShoppingCart.php",
 						title => "Shopping Cart"
 						),
+
+
+					array(
+						slug => "customerSupport.php",
+						title => "Customer Support"
+						),
 					
 					array(
 						slug  => "../globalIncludes/logout.php",
 						title => "Logout"
-						),
+						)
 		);
 ?>
