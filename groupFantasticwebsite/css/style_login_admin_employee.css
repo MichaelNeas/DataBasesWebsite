@@ -1,0 +1,139 @@
+body {
+  background: #3F3F3F;
+  margin:0;
+  padding:0;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  color:white;
+}
+
+#header {
+  display:block;
+  position:relative;
+  top:30px;
+  height: 80px;
+  background:rgba(0, 0, 0, 0.5);
+}
+
+#title {
+  display:block;
+  margin-left:100px;
+  margin-top:80px;
+}
+
+#backbutton {
+  display:block;
+  position:absolute;
+  width:30px;
+  margin-top:90px;
+  margin-left:40px;
+}
+
+#centerbox {
+  display:block;
+  position:relative;
+  width:400px;
+  height:300px;
+  margin-left:100px;
+  top:30px;
+  background:rgba(0,0,0,0.5);
+}
+
+.line-separator {
+  height: 1px;
+  width: 60%;
+  background: #FFFFFF;
+  border-bottom: 1px solid #313030;
+  margin-left: 100px;
+  margin-top:25px;
+}
+
+#logo {
+  width:130px;
+  position:absolute;
+  margin-top:-25px;
+}
+
+#chinook {
+  width:260px;
+  position:absolute;
+  margin-left:130px;
+  margin-top:-12px;
+}
+
+button {
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+}
+
+button:hover {
+background:#6abed8;
+}
+
+button:focus {outline:none;}
+
+.buttonLayoutSubmit {
+  margin-left: 120px;
+  padding: 4px 28px;
+  width:160px;
+  position: relative;
+  top:220px;
+  font-size: 18px;
+  line-height: 20px;
+  color: #f1f1f1;
+  text-align: center;
+  cursor: pointer;
+  background-color: #3F3F3F;
+  border: 1px solid #FFFFFF;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  display:block;
+}
+
+form {
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+}
+
+.form-group {
+  display:block;
+  position:absolute;
+  margin-left:50px;
+  top:50px;
+}
+
+.form-control {
+  display:block;
+  margin:0 auto;
+  background:rgba(117, 117, 113, 0.5);
+  border-radius:25px;
+  height: 30%;
+  border:none;
+  width:300px;
+  height:2em;
+  color:#FFFFFF;
+  font-size:18px;
+  text-indent:15px;
+}
+
+#alertLine {
+
+  display:none;
+  width:400px;
+  text-align:center;
+  margin-top:235px;
+  color:rgb(227,107,107);
+
+}
+
+label {
+  display:block;
+  margin-top:10px;
+}
+
+input:focus {
+  outline:none;
+  background:#6abed8;
+}
+
+input:hover {
+  background:#6abed8;
+}
